@@ -1,0 +1,302 @@
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+public class Solution {
+ public static void main(String args[] ) throws Exception {
+ int number;String name;double price;
+ Scanner sc=new Scanner(System.in);
+ int n=sc.nextInt();
+ Vehicle[] v=new Vehicle[n];
+ for(int i=0;i<n;i++){
+ number=sc.nextInt();
+ sc.nextLine();
+ name=sc.nextLine();
+ price=sc.nextDouble();
+ v[i]=new Vehicle(number, name, price);
+ }
+ sc.nextLine();
+ name=sc.nextLine();
+ Vehicle ans1=findVehicleWithMinimumPrice(v);
+ Vehicle ans2=searchVehicleByName(v, name);
+ 
+ if(ans1 !=null){
+ System.out.println("number-"+ans1.getnum());
+ System.out.println("name-"+ans1.getname());
+ System.out.println("price-"+ans1.getprice());
+ 
+ }
+ else{System.out.println("No Vehicle found with mentioned attribute");}
+ 
+ if(ans2 !=null){
+ System.out.println("number-"+ans2.getnum());
+ System.out.println("name-"+ans2.getname());
+ System.out.println("price-"+ans2.getprice());
+ 
+ }
+ else{System.out.println("No Vehicle found with mentioned attribute");}
+ }
+ 
+ public static Vehicle findVehicleWithMinimumPrice(Vehicle[] vl){
+ Vehicle v=null;
+ Double price=100000.0;
+ for(int i=0;i<vl.length;i++){
+ if(vl[i].getprice()<price){
+ price=vl[i].getprice();v=vl[i];}
+ }
+ return v;
+ 
+ }
+public static Vehicle searchVehicleByName(Vehicle[] vl,String name){
+Vehicle v=null;
+ 
+ for(int i=0;i<vl.length;i++){
+ if(vl[i].getname().equalsIgnoreCase(name)){v=vl[i];}
+ }
+ return v;
+ 
+}
+}
+ class Vehicle {
+ 
+ int number;String name;double price;
+ public Vehicle(int number,String name,double price){
+ this.number=number;
+ this.name=name;
+ this.price=price;
+ }
+ public int getnum(){return number;}
+ public String getname(){return name;}
+ public double getprice(){return price;}
+ }
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+public class Solution
+{
+public static void main(String[] args)
+{
+Scanner sc = new Scanner(System.in); //creating object of scanner class
+ 
+ int n=sc.nextInt(); //calling nextInt() method of Scanner class to accept number of lawyer objects
+ 
+ Lawyer d[] = new Lawyer[n]; //n represents size of the array
+ 
+ for(int i=0;i<d.length;i++)
+ {
+ int id=sc.nextInt(); //accept id
+ sc.nextLine(); 
+ String name=sc.nextLine(); // accept name
+ double salary=sc.nextDouble();
+ int age=sc.nextInt();
+ d[i]=new Lawyer(id,name,salary,age); // creating object
+ }
+ sc.nextLine();
+ String newname=sc.nextLine(); //accepting name of lawyer for method 2
+ 
+ double l1=findAverageAgeOfLawyer(d); //calling method1
+ if(l1!=0){
+ System.out.println("Average of age "+l1);
+ 
+ }
+ else
+ {
+ System.out.println("No Lawyer found with mentioned attribute.");
+ }
+ 
+ Lawyer l2=searchLawyerByName(d,newname); //calling method 2
+ 
+ if(l2!=null)
+ {
+ System.out.println("id-"+l2.getId());
+ System.out.println("name-"+l2.getName());
+ System.out.println("salary-"+l2.getSalary());
+ System.out.println("age-"+l2.getAge());
+ }
+ else{
+ System.out.println("No Lawyer found with mentioned attribute.");
+ 
+ }
+ 
+ 
+ }
+public static double findAverageAgeOfLawyer(Lawyer[] ar)
+{
+ double sum=0,avg=0;
+ for(int i=0;i<ar.length;i++)
+ {
+ sum+=ar[i].getAge();
+ }
+ avg=(sum/(ar.length));
+ return avg; 
+}
+public static Lawyer searchLawyerByName(Lawyer[] d, String name) 
+{
+ 
+ Lawyer l3=null;
+ for(int i=0;i<d.length;i++)
+ {
+ // System.out.println(d[i].getName());
+ // System.out.println(name);
+ if(d[i].getName().equalsIgnoreCase(name)){
+ l3=d[i]; //assigning object value to l3
+ break;
+ }
+ }
+ 
+ return l3;
+ 
+}
+} 
+class Lawyer
+{
+private int id;
+private String name;
+private double salary;
+private int age;
+ 
+public Lawyer(int id,String name,double salary,int age)
+{
+ this.id=id;
+ this.name=name;
+ this.age=age;
+ this.salary=salary;
+}
+public int getId()
+{
+ return id;
+}
+public String getName()
+{
+ return name;
+} 
+public int getAge()
+{
+ return age;
+}
+public double getSalary()
+{
+ return salary;
+}
+}
+
+
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+public class Solution {
+ public static void main(String args[] ) throws Exception {
+ Scanner sc=new Scanner(System.in);
+ int n=sc.nextInt();
+ College[] col=new College[n];
+ for(int i=0;i<n;i++){
+ int id =sc.nextInt();
+ sc.nextLine();
+ String name=sc.nextLine();
+ int con =sc.nextInt();
+ sc.nextLine();
+ String add =sc.nextLine();
+ int pin=sc.nextInt();
+ col[i]=new College(id, name, con, add, pin);
+ }
+ sc.nextLine();
+ String address=sc.nextLine();
+ College ans1=findCollegeWithMaximumPincode(col);
+ College ans2=searchCollegeByAddress(col,address);
+ 
+ if (ans1 !=null){
+ 
+ System.out.println("id-"+ans1.getid());
+ System.out.println("name-"+ans1.getname());
+ System.out.println("contactNo-"+ans1.getcontact());
+ System.out.println("address-"+ans1.getadd());
+ System.out.println("pincode-"+ans1.getpin());
+ }else{ System.out.println("No College found with mentioned attribute.");}
+ if (ans2 !=null){
+ 
+ System.out.println("id-"+ans2.getid());
+ System.out.println("name-"+ans2.getname());
+ System.out.println("contactNo-"+ans2.getcontact());
+ System.out.println("address-"+ans2.getadd());
+ System.out.println("pincode-"+ans2.getpin());
+ }else{ System.out.println("No College found with mentioned attribute.");}
+ 
+ }
+ public static College findCollegeWithMaximumPincode(College[] v){
+ College ve=null;
+ int pin=0;
+ for(int i=0;i<v.length;i++){
+ if(v[i].getpin()>pin){pin=v[i].getpin();ve=v[i];}
+ }
+ return ve;
+ }
+ public static College searchCollegeByAddress(College[] v,String address){
+ College ve=null;
+ 
+ for(int i=0;i<v.length;i++){
+ if(v[i].getadd().equalsIgnoreCase(address)){ve=v[i];}
+ }
+ return ve;
+ }
+}
+class College{
+ int id;String name;int contactNo;String address;int pincode;
+ 
+ public College(int id,String name,int contactNo,String address,int pincode){
+ this.id=id;
+ this.name=name;
+ this.contactNo=contactNo;
+ this.address=address;
+ this.pincode=pincode;
+ }
+ public int getid(){return id;}
+ public String getname(){return name;}
+ public int getcontact(){return contactNo;}
+ public String getadd(){return address;}
+ public int getpin(){return pincode;}
+}
+ 
+
+-------------------------------------------------------------------
+awk 'BEGIN {sal=0}
+{
+ if (tolower($3)=="sales") 
+ {sal=sal+$4;}
+ 
+}
+END{if (sal>0)
+ print ("Total Salary =",sal);
+ else print ("No employee found.");
+}
+'
+
+---------------------------------------
+awk 'BEGIN{FS="-";c=0;}{if($4>40000) c=c+1}END{print "Total count: "c}'
+----------------------------------------------------------------------------
+
+awk 'BEGIN{FS="|";e=0;g=0}
+{
+ if(tolower($3)=="english")
+ e=e+1;
+ if(tolower($3)=="geography")
+ g=g+1;
+}
+END{
+ if (e==0 && g==0){print ("No records found.");}
+ 
+ else { print ("Count of students for English Major =",e);
+ print ("Count of students for Geography Major =",g);}
+ 
+}’
